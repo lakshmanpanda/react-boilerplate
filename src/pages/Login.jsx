@@ -18,12 +18,13 @@ const Login = () => {
                 console.log(response);
                 if (response.status == 200) {
                     setErrMsg("Valid Credentials");
+                }
             setShowErr(true);
 
-                }
             } catch (error) {
                 console.log(error);
-                setErrMsg(error.response.statusText)
+                setErrMsg(error.response.statusText);
+                setErrMsg("Invalid Credentials");
             setShowErr(true);
 
             }
