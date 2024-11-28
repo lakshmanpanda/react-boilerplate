@@ -8,5 +8,6 @@ export  const ApiRoutes={
 }
 
 export const ReactRoutes = {
-    LOGIN:"/"
+    LOGIN:"/",
+    DASHBOARD:"/Dashboard"
 }

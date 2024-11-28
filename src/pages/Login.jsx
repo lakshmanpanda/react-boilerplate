@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react"
-import { ApiRoutes, Host } from "../constants/constants";
+import { useNavigate } from 'react-router-dom';
+import { ReactRoutes,ApiRoutes, Host } from "../constants/constants";
 
 
 
@@ -10,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [errMsg, setErrMsg] = useState("");
     const [showErr, setShowErr] = useState(false);
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (email.length != 0 && password.length != 0) {
@@ -18,6 +20,7 @@ const Login = () => {
                 console.log(response);
                 if (response.status == 200) {
                     setErrMsg("Valid Credentials");
+                    navigate("/Dashboard");
                 }
             setShowErr(true);
 
