@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
@@ -14,30 +15,30 @@ const Login = () => {
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (email.length != 0 && password.length != 0) {
+        if (email.length !== 0 && password.length !== 0) {
             try {
                 const response = await axios.get(Host.APIHOST + ApiRoutes.LOGIN + `?email=${email}&password=${password}`);
                 console.log(response);
-                if (response.status == 200) {
-                    setErrMsg("Valid Credentials");
-                    navigate("/Dashboard");
+                if (response.status === 200) {
+                    const user = response.data; // Assuming response.data contains user details
+                    const { id } = user; // Extract user ID
+                    if (!id) throw new Error("User ID is missing in the response");
+    
+                    sessionStorage.setItem("userId", id); // Store user ID in sessionStorage
+    
+                    navigate(ReactRoutes.DASHBOARD); // Redirect to Dashboard
                 }
-            setShowErr(true);
-
             } catch (error) {
                 console.log(error);
-                setErrMsg(error.response.statusText);
                 setErrMsg("Invalid Credentials");
-            setShowErr(true);
-
+                setShowErr(true);
             }
-
-        }
-        else{
-            setErrMsg("Email and Password is required");
+        } else {
+            setErrMsg("Email and Password are required");
             setShowErr(true);
         }
-    }
+    };
+    
     return (
         <div className="w-screen h-screen bg-white  text-xl flex flex-col justify-center items-center">
             <div className="flex flex-col justify-start space-y-5">
