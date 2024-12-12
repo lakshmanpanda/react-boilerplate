@@ -6,12 +6,12 @@ export  const Host = {
 export  const ApiRoutes={
     LOGIN:"login",
     DASHBOARD:"http://localhost:8080/dashboard?id=1",  // Replace with your actual API endpoint for fetching goals
-
+    SIGNUP:""
 }
 
 export const ReactRoutes = {
     LOGIN:"/",
-    //DASHBOARD:"/Dashboard"
-    DASHBOARD:"/Dashboard"
+    DASHBOARD:"/Dashboard",
+    SIGNUP:"/signup"
 }
 
